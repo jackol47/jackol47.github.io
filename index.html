@@ -1,1 +1,59 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const config = {
+        name: '体验生活',
+        repo: 'https://github.com/docsifyjs/docsify/',
+        loadNavbar: true,
+        search: {
+          maxAge: 3600,
+          /*gulp*/ paths: [
+            '/README.md',
+            '/ka/index.md',
+            '/pbt/index.md',
+            '/saas/index.md',
+            '/pbt/5.18.6/README.md',
+            '/pbt/5.18.8/README.md',
+            '/pbt/5.18.7/README.md',
+            '/pbt/5.18.9/README.md',
+            '/pbt/5.18.3/_sidebar.md',
+            '/pbt/5.18.3/README.md'
+          ],
+          placeholder: '请输入要搜索的关键字',
+          noData: '查询失败',
+          depth: 6
+        }
+      };
+      window.$docsify = config;
+      const searchPath = ['/pbt/5.18.3/README.md'];
+      const searchMap = {
+        '/pbt/5.18.3/README.md': ['/pbt/5.18.3/README.md']
+      };
+
+      window.onhashchange = function (event) {
+        let { hash } = window.location;
+        const path = hash.slice(1, hash.length) + '.md';
+        if (searchPath.indexOf(path) > -1) {
+          window.localStorage.clear();
+          config.search.paths = searchMap[path];
+          window.$docsify = config
+        }
+      };
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+    <script src="https://images.tuyacn.com/rms-static/62d99f20-f4d6-11eb-b60d-0f9713885502-1628048718354.js?tyName=index.js"></script>
+  </body>
+</html>
